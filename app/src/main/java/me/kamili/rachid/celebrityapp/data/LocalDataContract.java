@@ -23,6 +23,7 @@ public class LocalDataContract {
     public static class Celebrity implements BaseColumns {
 
         public static final String TABLE = "Celebrity";
+        public static final String ROWID = "rowid";
         public static final String FIRST_NAME = "firstName";
         public static final String LAST_NAME = "lastName";
         public static final String OCCUPATION = "occupation";
