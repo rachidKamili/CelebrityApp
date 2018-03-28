@@ -5,6 +5,7 @@ package me.kamili.rachid.celebrityapp.model;
  */
 
 public class Celebrity {
+    private Long rowId;
     private String firstName;
     private String lastName;
     private String occupation;
@@ -15,6 +16,22 @@ public class Celebrity {
         this.lastName = lastName;
         this.occupation = occupation;
         this.isFavorite = isFavorite;
+    }
+
+    public Celebrity(Long id, String firstName, String lastName, String occupation, Boolean isFavorite) {
+        this.rowId = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.occupation = occupation;
+        this.isFavorite = isFavorite;
+    }
+
+    public Long getRowId() {
+        return rowId;
+    }
+
+    public void setRowId(Long rowId) {
+        this.rowId = rowId;
     }
 
     public String getFirstName() {
