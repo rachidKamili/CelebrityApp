@@ -1,6 +1,7 @@
 package me.kamili.rachid.celebrityapp;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,10 @@ import me.kamili.rachid.celebrityapp.model.Celebrity;
 public class CelebritiesActivity extends AppCompatActivity {
 
     private ListView lvCelebrities;
+    private FloatingActionButton showFavoritesBtn;
+    private FloatingActionButton hideFavoritesBtn;
+    public static boolean fav=false;
+    private CelebrityAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +37,12 @@ public class CelebritiesActivity extends AppCompatActivity {
 //        celebrityList.add(new Celebrity((long) 7,"Donald", "Trump","Politician"));
 //        celebrityList.add(new Celebrity((long) 8,"Kanye", "West","Singer"));
 //        celebrityList.add(new Celebrity((long) 9,"Taylor", "Swift","Singer"));
+        initButtons();
+    }
 
+    private void initButtons() {
+        showFavoritesBtn = findViewById(R.id.showFavoritesBtn);
+        hideFavoritesBtn = findViewById(R.id.hideFavoritesBtn);
     }
 
     @Override
@@ -46,7 +56,7 @@ public class CelebritiesActivity extends AppCompatActivity {
 
         List<Celebrity> celebrityList = dataSource.getCelebrities();
 
-        CelebrityAdapter adapter = new CelebrityAdapter(this, celebrityList);
+        adapter = new CelebrityAdapter(this, celebrityList);
         lvCelebrities.setAdapter(adapter);
         //lvCelebrities.invalidateViews();
     }
@@ -54,5 +64,19 @@ public class CelebritiesActivity extends AppCompatActivity {
     public void addCelebrity(View view) {
         Intent intent = new Intent(this, NewCelebrityActivity.class);
         startActivity(intent);
+    }
+
+    public void showFavorites(View view) {
+        showFavoritesBtn.setVisibility(View.GONE);
+        hideFavoritesBtn.setVisibility(View.VISIBLE);
+        fav=true;
+        adapter.notifyDataSetChanged();
+    }
+
+    public void hideFavorites(View view) {
+        showFavoritesBtn.setVisibility(View.VISIBLE);
+        hideFavoritesBtn.setVisibility(View.GONE);
+        fav=false;
+        adapter.notifyDataSetChanged();
     }
 }

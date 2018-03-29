@@ -59,6 +59,10 @@ public class CelebrityAdapter extends BaseAdapter {
 
         final Celebrity celebrity = (Celebrity) getItem(position);
 
+        if(CelebritiesActivity.fav && !celebrity.getFavorite()){
+            rowView.setVisibility(View.GONE);
+        }
+
         TextView firstName = rowView.findViewById(R.id.firstName);
         firstName.setText(celebrity.getFirstName());
 
