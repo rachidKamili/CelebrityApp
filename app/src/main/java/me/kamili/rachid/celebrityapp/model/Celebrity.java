@@ -1,10 +1,12 @@
 package me.kamili.rachid.celebrityapp.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Admin on 3/28/2018.
  */
 
-public class Celebrity {
+public class Celebrity implements Serializable{
     private Long rowId;
     private String firstName;
     private String lastName;
@@ -23,6 +25,14 @@ public class Celebrity {
         this.lastName = lastName;
         this.occupation = occupation;
         this.isFavorite = isFavorite;
+    }
+
+    public Celebrity(Long id, String firstName, String lastName, String occupation) {
+        this.rowId = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.occupation = occupation;
+        this.isFavorite = false;
     }
 
     public Celebrity(Long id, String firstName, String lastName, String occupation, Boolean isFavorite) {

@@ -7,6 +7,12 @@
     android:fitsSystemWindows="true"
     tools:context="me.kamili.rachid.celebrityapp.CelebritiesActivity">
 
+    <ListView
+        android:id="@+id/lvCelebrities"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+    </ListView>
+
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
