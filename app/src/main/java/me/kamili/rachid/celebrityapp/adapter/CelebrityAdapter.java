@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,7 +62,9 @@ public class CelebrityAdapter extends BaseAdapter {
         final Celebrity celebrity = (Celebrity) getItem(position);
 
         if(CelebritiesActivity.fav && !celebrity.getFavorite()){
-            rowView.setVisibility(View.GONE);
+            Space space = new Space(mContext);
+            space.setVisibility(View.GONE);
+            return space;
         }
 
         TextView firstName = rowView.findViewById(R.id.firstName);
