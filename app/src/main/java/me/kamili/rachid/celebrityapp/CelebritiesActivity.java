@@ -22,8 +22,6 @@ public class CelebritiesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_celebrities);
 
         lvCelebrities = findViewById(R.id.lvCelebrities);
-//        final ArrayList<Celebrity> celebrityList = Celebrity.getRecipesFromFile("Celebrity.json", this);
-
 
 //        celebrityList.add(new Celebrity((long) 1,"Margot", "Robbie","Actress"));
 //        celebrityList.add(new Celebrity((long) 2,"Adam", "Driver","Actor"));
@@ -34,15 +32,6 @@ public class CelebritiesActivity extends AppCompatActivity {
 //        celebrityList.add(new Celebrity((long) 7,"Donald", "Trump","Politician"));
 //        celebrityList.add(new Celebrity((long) 8,"Kanye", "West","Singer"));
 //        celebrityList.add(new Celebrity((long) 9,"Taylor", "Swift","Singer"));
-
-
-
-//        lvCelebrities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Toast.makeText(getApplicationContext(), "you clicked" + i, Toast.LENGTH_LONG).show();
-//            }
-//        });
 
     }
 
@@ -63,16 +52,6 @@ public class CelebritiesActivity extends AppCompatActivity {
     }
 
     public void addCelebrity(View view) {
-//        database.saveCelebrity(new Celebrity("Margot", "Robbie","Actress"));
-//        database.saveCelebrity(new Celebrity("Adam", "Driver","Actor"));
-//        database.saveCelebrity(new Celebrity("Kate", "McKinnon","Comedian"));
-//        database.saveCelebrity(new Celebrity("Lucy", "Liu","Artist"));
-//        database.saveCelebrity(new Celebrity("Ellen", "DeGeneres","Comedian"));
-//        database.saveCelebrity(new Celebrity("Jim", "Parsons","Actor"));
-//        database.saveCelebrity(new Celebrity("Donald", "Trump","Politician"));
-//        database.saveCelebrity(new Celebrity("Kanye", "West","Singer"));
-//        database.saveCelebrity(new Celebrity("Taylor", "Swift","Singer"));
-
         Intent intent = new Intent(this, NewCelebrityActivity.class);
         startActivity(intent);
     }

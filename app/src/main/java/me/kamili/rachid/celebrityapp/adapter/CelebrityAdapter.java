@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -53,10 +54,10 @@ public class CelebrityAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        View rowView = mInflater.inflate(R.layout.celebrity_item, viewGroup, false);
+    public View getView(int position, View view, ViewGroup viewGroup) {
+        final View rowView = mInflater.inflate(R.layout.celebrity_item, viewGroup, false);
 
-        final Celebrity celebrity = (Celebrity) getItem(i);
+        final Celebrity celebrity = (Celebrity) getItem(position);
 
         TextView firstName = rowView.findViewById(R.id.firstName);
         firstName.setText(celebrity.getFirstName());
@@ -67,6 +68,8 @@ public class CelebrityAdapter extends BaseAdapter {
         TextView occupation = rowView.findViewById(R.id.occupation);
         occupation.setText(celebrity.getOccupation());
 
+
+        //Favorites
         final ImageButton isFav = rowView.findViewById(R.id.isFav);
         if (celebrity.getFavorite())
             isFav.setImageResource(R.drawable.ic_favorite_red_24dp);
@@ -83,6 +86,20 @@ public class CelebrityAdapter extends BaseAdapter {
 
             LocalDataSource dataSource = new LocalDataSource(mContext);
             long rowNumber = dataSource.editCelebrityByRowID(celebrity);
+            }
+        });
+
+        //Delete
+        final ImageButton deleteBtn = rowView.findViewById(R.id.delete);
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LocalDataSource dataSource = new LocalDataSource(mContext);
+                dataSource.deleteCelebrity(celebrity);
+
+                mDataSource.remove(celebrity);
+                notifyDataSetChanged();
             }
         });
 

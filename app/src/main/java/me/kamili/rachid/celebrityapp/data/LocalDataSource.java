@@ -68,8 +68,6 @@ public class LocalDataSource extends SQLiteOpenHelper {
                 LocalDataContract.Celebrity.KEY_ID+"="+celebrity.getRowId(),
                 null
                 );
-        System.out.println(rowNumber+"irfeioufhe");
-        System.out.println(CelebrityAdapter.mDataSource);
         return rowNumber;
     }
 
@@ -99,5 +97,8 @@ public class LocalDataSource extends SQLiteOpenHelper {
         return celebrities;
     }
 
-
+    public void deleteCelebrity(Celebrity celebrity) {
+        SQLiteDatabase database = getWritableDatabase();
+        database.delete(LocalDataContract.Celebrity.TABLE,LocalDataContract.Celebrity.KEY_ID+"="+celebrity.getRowId(),null);
+    }
 }
