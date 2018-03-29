@@ -11,6 +11,13 @@ public class Celebrity {
     private String occupation;
     private Boolean isFavorite;
 
+    public Celebrity(String firstName, String lastName, String occupation) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.occupation = occupation;
+        this.isFavorite = false;
+    }
+
     public Celebrity(String firstName, String lastName, String occupation, Boolean isFavorite) {
         this.firstName = firstName;
         this.lastName = lastName;
