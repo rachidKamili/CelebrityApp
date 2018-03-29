@@ -1,8 +1,6 @@
 package me.kamili.rachid.celebrityapp;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -11,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import me.kamili.rachid.celebrityapp.adapter.CelebrityAdapter;
 import me.kamili.rachid.celebrityapp.data.LocalDataSource;
 import me.kamili.rachid.celebrityapp.model.Celebrity;
 
@@ -55,14 +54,14 @@ public class NewCelebrityActivity extends AppCompatActivity implements Toolbar.O
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.addCel:
-                saveCelebrity();
+                addCelebrity();
                 return true;
         }
 
         return true;
     }
 
-    private void saveCelebrity() {
+    private void addCelebrity() {
 
         LocalDataSource dataSource = new LocalDataSource(this);
 
@@ -75,6 +74,8 @@ public class NewCelebrityActivity extends AppCompatActivity implements Toolbar.O
 
         long rowNumber = dataSource.saveCelebrity(celebrity);
         celebrity.setRowId(rowNumber);
+
+        CelebrityAdapter.mDataSource.add(celebrity);
 
         if(rowNumber>-1)
             finish();

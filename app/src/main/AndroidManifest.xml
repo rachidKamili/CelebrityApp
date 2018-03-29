@@ -20,7 +20,10 @@
             android:name=".NewCelebrityActivity"
             android:label="@string/title_activity_new_celebrity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".EditCelebrityActivity"></activity>
+        <activity
+            android:name=".EditCelebrityActivity"
+            android:label="@string/title_activity_edit_celebrity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

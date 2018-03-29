@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Celebrity App</string>
     <string name="title_activity_new_celebrity">Add new Celebrity</string>
+    <string name="title_activity_edit_celebrity">Edit Celebrity</string>
 </resources>

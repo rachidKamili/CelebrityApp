@@ -13,6 +13,7 @@ public class LocalDataContract {
 
     public static final String CREATE_CELEBRITY_TABLE
             = "CREATE TABLE " + Celebrity.TABLE + "(" +
+            Celebrity.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             Celebrity.FIRST_NAME + " TEXT, " +
             Celebrity.LAST_NAME + " TEXT, " +
             Celebrity.OCCUPATION + " TEXT, " +
@@ -23,7 +24,7 @@ public class LocalDataContract {
     public static class Celebrity implements BaseColumns {
 
         public static final String TABLE = "Celebrity";
-        public static final String ROWID = "rowid";
+        public static final String KEY_ID = "keyid";
         public static final String FIRST_NAME = "firstName";
         public static final String LAST_NAME = "lastName";
         public static final String OCCUPATION = "occupation";

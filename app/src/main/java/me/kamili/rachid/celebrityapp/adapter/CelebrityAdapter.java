@@ -1,4 +1,4 @@
-package me.kamili.rachid.celebrityapp;
+package me.kamili.rachid.celebrityapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import me.kamili.rachid.celebrityapp.CelebritiesActivity;
+import me.kamili.rachid.celebrityapp.EditCelebrityActivity;
+import me.kamili.rachid.celebrityapp.R;
+import me.kamili.rachid.celebrityapp.data.LocalDataSource;
 import me.kamili.rachid.celebrityapp.model.Celebrity;
 
 /**
@@ -23,9 +28,9 @@ public class CelebrityAdapter extends BaseAdapter {
 
     private Context mContext;
     private LayoutInflater mInflater;
-    private ArrayList<Celebrity> mDataSource;
+    public static List<Celebrity> mDataSource;
 
-    public CelebrityAdapter(Context context, ArrayList<Celebrity> celebrities) {
+    public CelebrityAdapter(Context context, List<Celebrity> celebrities) {
         mContext = context;
         mDataSource = celebrities;
         mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -70,11 +75,14 @@ public class CelebrityAdapter extends BaseAdapter {
         isFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                celebrity.setFavorite(!celebrity.getFavorite());
-                if (celebrity.getFavorite())
-                    isFav.setImageResource(R.drawable.ic_favorite_red_24dp);
-                else
-                    isFav.setImageResource(R.drawable.ic_favorite_border_red_24dp);
+            celebrity.setFavorite(!celebrity.getFavorite());
+            if (celebrity.getFavorite())
+                isFav.setImageResource(R.drawable.ic_favorite_red_24dp);
+            else
+                isFav.setImageResource(R.drawable.ic_favorite_border_red_24dp);
+
+            LocalDataSource dataSource = new LocalDataSource(mContext);
+            long rowNumber = dataSource.editCelebrityByRowID(celebrity);
             }
         });
 
@@ -82,7 +90,7 @@ public class CelebrityAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(mContext, EditCelebrityActivity.class);
-                i.putExtra("toBeChanger",celebrity);
+                i.putExtra("toBeChanged",celebrity);
                 mContext.startActivity(i);
             }
         });
