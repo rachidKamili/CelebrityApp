@@ -44,7 +44,7 @@ public class CelebritiesActivity extends AppCompatActivity {
     private ListView lvCelebrities;
     private FloatingActionButton showFavoritesBtn;
     private FloatingActionButton hideFavoritesBtn;
-    public static boolean fav=false;
+    public static boolean fav = false;
     private CelebrityAdapter adapter;
     private List<Celebrity> celebrityList;
 
@@ -78,7 +78,7 @@ public class CelebritiesActivity extends AppCompatActivity {
         refresh();
     }
 
-    public void refresh(){
+    public void refresh() {
         LocalDataSource dataSource = new LocalDataSource(this);
 
         celebrityList = dataSource.getCelebrities();
@@ -96,14 +96,14 @@ public class CelebritiesActivity extends AppCompatActivity {
     public void showFavorites(View view) {
         showFavoritesBtn.setVisibility(View.GONE);
         hideFavoritesBtn.setVisibility(View.VISIBLE);
-        fav=true;
+        fav = true;
         adapter.notifyDataSetChanged();
     }
 
     public void hideFavorites(View view) {
         showFavoritesBtn.setVisibility(View.VISIBLE);
         hideFavoritesBtn.setVisibility(View.GONE);
-        fav=false;
+        fav = false;
         adapter.notifyDataSetChanged();
     }
 
@@ -165,13 +165,13 @@ public class CelebritiesActivity extends AppCompatActivity {
         FileOutputStream outputStream;
         try {
             String absolutePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
-            outputStream = new FileOutputStream(new File(absolutePath+"/celebrities.json"), false);
+            outputStream = new FileOutputStream(new File(absolutePath + "/celebrities.json"), false);
             outputStream.write(data.getBytes());
             outputStream.close();
-            Toast.makeText(this,"celebrities.json saved on Download folder",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "celebrities.json saved on Download folder", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(this,"Couldn't save celebrities.json on Download folder",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Couldn't save celebrities.json on Download folder", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -179,17 +179,17 @@ public class CelebritiesActivity extends AppCompatActivity {
 
         //showFileChooser();
 
-        String results="";
+        String results = "";
         try {
             String absolutePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
-            InputStream inputStream = new FileInputStream(new File(absolutePath+"/celebrities.json"));
+            InputStream inputStream = new FileInputStream(new File(absolutePath + "/celebrities.json"));
 
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String receiveString = "";
             StringBuilder stringBuilder = new StringBuilder();
 
-            while ( (receiveString = bufferedReader.readLine()) != null ) {
+            while ((receiveString = bufferedReader.readLine()) != null) {
                 stringBuilder.append(receiveString);
             }
 
@@ -205,8 +205,9 @@ public class CelebritiesActivity extends AppCompatActivity {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
 
-        Type type = new TypeToken<List<Celebrity>>(){}.getType();
-        List<Celebrity> celebrities =  gson.fromJson(results,type);
+        Type type = new TypeToken<List<Celebrity>>() {
+        }.getType();
+        List<Celebrity> celebrities = gson.fromJson(results, type);
         LocalDataSource dataSource = new LocalDataSource(this);
         for (Celebrity c : celebrities)
             dataSource.saveCelebrity(c);
