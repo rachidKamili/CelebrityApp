@@ -28,4 +28,5 @@ dependencies {
 
     compile "com.android.support:support-core-utils:26.1.0"
     compile 'com.android.support:design:26.1.0'
+    compile 'com.google.code.gson:gson:2.8.2'
 }
